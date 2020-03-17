@@ -45,6 +45,10 @@
 								<mainClass>OneOffProcess</mainClass>
 								<name>oneoff</name>
 							</program>
+							<program>
+								<mainClass>WorkerProcess</mainClass>
+								<name>workerTest</name>
+							</program>
 						</programs>
 					</configuration>
 					<executions>

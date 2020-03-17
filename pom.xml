@@ -5,13 +5,12 @@
   <groupId>fr.pollux28</groupId>
   <artifactId>BotDiscord</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  
+
   <name>Class Bot</name>
   <description>Un bot pour gérer la classe pendant le CoVid-19</description>
   <build>
     
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>
     
     <plugins>
 	<plugin>

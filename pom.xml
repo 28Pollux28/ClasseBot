@@ -35,22 +35,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-							<goals><goal>copy</goal></goals>
-							<configuration>
-								<artifactItems>
-									<artifactItem>
-										<groupId>com.github.28Pollux28</groupId>
-										<artifactId>MyBot</artifactId>
-										<version>0.0.1</version>
-										<destFileName>MyBot_Heroku.jar</destFileName>
-									</artifactItem>
-								</artifactItems>
-							</configuration>
-						</execution>
-					</executions>
 			</plugin>
 		</plugins>
 	</build>

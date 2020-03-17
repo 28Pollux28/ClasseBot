@@ -10,7 +10,7 @@
   <description>Un bot pour gérer la classe pendant le CoVid-19</description>
   <build>
     
-    <sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>
+    <sourceDirectory>bin/fr/pollux28/classbot</sourceDirectory>
     
     <plugins>
 	<plugin>

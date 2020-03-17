@@ -10,7 +10,8 @@
   <description>Un bot pour gérer la classe pendant le CoVid-19</description>
   <build>
     
-    <sourceDirectory>bin/fr/pollux28/classbot</sourceDirectory>
+    <!--<sourceDirectory>bin/fr/pollux28/classbot</sourceDirectory>-->
+  <destFileName>webapp-runner.jar</destFileName>
     
     <plugins>
 	<plugin>

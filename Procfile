@@ -1,1 +1,1 @@
-web: java -jar MyBot.jar
+worker: java -jar target/MyBot.jar

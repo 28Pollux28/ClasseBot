@@ -11,7 +11,7 @@
   <build>
     
     <!--<sourceDirectory>bin/fr/pollux28/classbot</sourceDirectory>-->
-  <destFileName>webapp-runner.jar</destFileName>
+  <destFileName>MyBot.jar</destFileName>
     
     <plugins>
 	<plugin>

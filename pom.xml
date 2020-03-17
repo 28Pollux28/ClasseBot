@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
   
@@ -8,8 +8,9 @@
 
 	<name>Class Bot</name>
 	<description>Un bot pour gérer la classe pendant le CoVid-19</description>
+-->
 	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
-	<build>
+<!--	<build>
     
 		<sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>
 
@@ -63,5 +64,44 @@
 			<version>1.3.34</version>
 		</dependency>
 	</dependencies>
+
+</project>
+-->
+<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.pollux28</groupId>
+  <artifactId>BotDiscord</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+          <artifactId>appassembler-maven-plugin</artifactId>
+          <version>1.1.1</version>
+          <configuration>
+            <assembleDirectory>target</assembleDirectory>
+            <programs>
+                <program>
+                    <mainClass>WorkerProcess</mainClass>
+                    <name>worker</name>
+                </program>
+                <program>
+                    <mainClass>OneOffProcess</mainClass>
+                    <name>oneoff</name>
+                </program>
+            </programs>
+          </configuration>
+          <executions>
+              <execution>
+                  <phase>package</phase><goals><goal>assemble</goal></goals>
+              </execution>
+          </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

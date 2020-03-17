@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/dependency/MyBot.jar --port $PORT target/*.war
+web: java -cp target/classes/:target/dependency/* fr.pollux28.xmpp.EntryPoint

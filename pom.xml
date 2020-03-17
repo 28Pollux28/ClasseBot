@@ -86,7 +86,7 @@
             <assembleDirectory>target</assembleDirectory>
             <programs>
                 <program>
-                    <mainClass>WorkerProcess</mainClass>
+                    <mainClass><!--WorkerProcess-->ClassBot</mainClass>
                     <name>worker</name>
                 </program>
                 <program>

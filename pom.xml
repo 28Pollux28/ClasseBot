@@ -38,12 +38,16 @@
 						<assembleDirectory>target</assembleDirectory>
 						<programs>
 							<program>
-								<mainClass><!--WorkerProcess-->ClassBot</mainClass>
+								<mainClass>WorkerProcess</mainClass>
 								<name>worker</name>
 							</program>
 							<program>
 								<mainClass>OneOffProcess</mainClass>
 								<name>oneoff</name>
+							</program>
+							<program>
+								<mainClass>OneOnProcess</mainClass>
+								<name>oneon</name>
 							</program>
 						</programs>
 					</configuration>

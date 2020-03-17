@@ -45,10 +45,6 @@
 								<mainClass>OneOffProcess</mainClass>
 								<name>oneoff</name>
 							</program>
-							<program>
-								<mainClass>OneOnProcess</mainClass>
-								<name>oneon</name>
-							</program>
 						</programs>
 					</configuration>
 					<executions>

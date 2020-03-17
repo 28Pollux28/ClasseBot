@@ -8,10 +8,10 @@
 
 	<name>Class Bot</name>
 	<description>Un bot pour gérer la classe pendant le CoVid-19</description>
-	<destFileName>MyBot.jar</destFileName>
+	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>
     
-		<!--<sourceDirectory>bin/fr/pollux28/classbot</sourceDirectory>-->
+		<sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>
 
 
 		<plugins>
@@ -35,6 +35,22 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+							<goals><goal>copy</goal></goals>
+							<configuration>
+								<artifactItems>
+									<artifactItem>
+										<groupId>com.github.28Pollux28</groupId>
+										<artifactId>MyBot</artifactId>
+										<version>0.0.1</version>
+										<destFileName>MyBot_Heroku.jar</destFileName>
+									</artifactItem>
+								</artifactItems>
+							</configuration>
+						</execution>
+					</executions>
 			</plugin>
 		</plugins>
 	</build>

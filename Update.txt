@@ -1,0 +1,6 @@
+Updates : 
+-/classe quit : delete questions from user who left
+- on voicemove : if user move to a non  classe then come back : not muted
+- /classe info : sans [name] display les != classes avec leur nom + nbr de classes + nbr élèves
+				avec : d
+/classe mute : activer ou désactiver le mute forcé

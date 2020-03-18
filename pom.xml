@@ -50,23 +50,23 @@
 						</manifest>
 					</archive>
 					<programs>
-							<program>
-								<mainClass>ClassBot</mainClass>
-								<name>worker</name>
-							</program>
-							<program>
-								<mainClass>ClassBotTest</mainClass>
-								<name>workertest</name>
-							</program>
-							<program>
-								<mainClass>WorkerProcess</mainClass>
-								<name>workerprocess</name>
-							</program>
-							<program>
-								<mainClass>OneOffProcess</mainClass>
-								<name>oneoff</name>
-							</program>
-						</programs>
+						<program>
+							<mainClass>ClassBot</mainClass>
+							<name>worker</name>
+						</program>
+						<program>
+							<mainClass>ClassBotTest</mainClass>
+							<name>workertest</name>
+						</program>
+						<program>
+							<mainClass>WorkerProcess</mainClass>
+							<name>workerprocess</name>
+						</program>
+						<program>
+							<mainClass>OneOffProcess</mainClass>
+							<name>oneoff</name>
+						</program>
+					</programs>
 				</configuration>
 			</plugin>
 			<plugin>

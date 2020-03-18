@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
 
-//import fr.pollux28.classbot.command.CommandMap;
+import fr.pollux28.classbot.command.CommandMap;
 //import fr.pollux28.classbot.event.BotListener;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;

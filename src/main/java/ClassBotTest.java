@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.entities.Member;
 public class ClassBotTest implements Runnable {
 	//static public ArrayList<Classe> classes = new ArrayList<Classe>();
 	private final JDA jda;
-	private final CommandMap commandMap = new CommandMap(this);
+	//private final CommandMap commandMap = new CommandMap(this);
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
 	//static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();

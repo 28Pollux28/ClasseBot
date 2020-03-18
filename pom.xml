@@ -31,11 +31,12 @@
 
 			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
 			<plugin>
-				<!--<groupId>org.codehaus.mojo</groupId>-->
-				<groupId>org.apache.maven.plugins</groupId>
+				<groupId>org.codehaus.mojo</groupId>
+				<version>1.1.1</version>
+				<!--<groupId>org.apache.maven.plugins</groupId>
+				<version>3.1.0</version>-->
 				<artifactId>appassembler-maven-plugin</artifactId>
-				<!--<version>1.1.1</version>-->
-				<version>3.1.0</version>
+				
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
 					<archive>

@@ -1,7 +1,7 @@
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 
-import javax.security.auth.login.LoginException
+import javax.security.auth.login.LoginException;
 
 public class BotExample extends ListenerAdapter
 {

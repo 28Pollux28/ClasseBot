@@ -1,8 +1,3 @@
-<configuration>
-	<processTypes>
-		<web>java $JAVA_OPTS -cp target/classes:target/dependency/* ClassBot</web>
-	</processTypes>
-</configuration>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
@@ -112,6 +107,9 @@
 				<version>3.0.1</version>
 				<configuration>
 					<appName>ClassBot</appName>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* ClassBot</web>
+					</processTypes>
 				</configuration>
 			</plugin>
 		</plugins>

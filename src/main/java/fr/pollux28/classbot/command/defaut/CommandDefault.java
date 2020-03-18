@@ -71,8 +71,8 @@ public class CommandDefault {
 				}
 				String name = args[2];
 
-				VoiceChannel vc = guild.getMember(user).getVoiceState().getChannel();
-				if(vc== null) {
+				VoiceChannel vc = member.getVoiceState().getChannel();
+				if(vc == null) {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
 					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 					textChannel.sendMessage(messageBuilder("Erreur", "Merci de vous connecter sur un channel vocal pour démarrer un cours "+ user.getAsMention(),
@@ -81,7 +81,7 @@ public class CommandDefault {
 				}
 				Classe classe = new Classe(name, user, guild, vc, textChannel);
 				classe.setUsers(new ArrayList<User>());
-				classe.addUser(user, guild.getMember(user));
+				classe.addUser(user, member);
 				for (Classe cl : ClassBot.getClasses()) {
 					if(cl.getGuild().getId().equals(classe.getGuild().getId())) {
 						if(cl.getName().equalsIgnoreCase(classe.getName())) {
@@ -117,7 +117,6 @@ public class CommandDefault {
 							return;
 						}
 					}
-
 				}
 
 				ClassBot.getClasses().add(classe);
@@ -181,60 +180,58 @@ public class CommandDefault {
 				}
 				break;
 			case "join":
-				if(args.length > 2) {
-					if(!ClassBot.getMemberClasses().containsKey(guild.getMember(user))) {
-						for (Classe cl : ClassBot.getClasses()) {
-							if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
-								cl.addUser(user, guild.getMember(user));
-								textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
-										+" peut maintenant commencer ! \n __**N'oublie pas de te connecter dans le salon vocal "+cl.getVoiceChannel().getName()
-										+ "**__\nAller, au travail !",
-										0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
-								return;
-							}
-						}
-						textChannel.sendMessage(messageBuilder("Erreur", "Le nom précisé est incorrect. Vérifiez le nom et recommencez."
-								+ "\n Courage vous pourrez bientôt travailler :wink:",0, null,null,
-								"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
-						return;
-					}else {
-						fieldTitle = new String[]{"/classe quit"};
-						fieldContent = new String[]{"Vous permet de quitter la classe de votre professeur."};
-						textChannel.sendMessage(messageBuilder("Vous faîtes déjà parti d'une classe", "Vous devez quitter votre ancienne classe avant de pouvoir en rejoindre une autre "
-						+ "\nPour quitter le cours utilisez la commande :",1, fieldTitle, fieldContent,
-						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
-						return;
-					}
-				}else {
+				if(args.length < 3) {
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous devez préciser le nom du prof !", 
 							"/classe join @[nomduprof]",0, null, null,
 							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
 					return;
 				}
-			case "quit":
 				if(ClassBot.getMemberClasses().containsKey(member)) {
-					Classe cl = ClassBot.getMemberClasses().get(member);
-					if(!ClassBot.getMemberClasses().get(member).getProf().getId().equals(user.getId())) {
-						if(member.getVoiceState().inVoiceChannel() && member.getVoiceState().getChannel().getId().equals(cl.getVoiceChannel().getId())) {
-							member.mute(false).queue();
-							guild.kickVoiceMember(member).queue();
-						}
-						ClassBot.getMemberClasses().get(member).removeUser(member.getUser());
-						ClassBot.memberClasses.remove(member);
-						textChannel.sendMessage(messageBuilder(user.getName()+" a quitté la classe!","Est-ce un déserteur ? Il n'aimait plus le doux son de la voix de "+cl.getProf()+" ?"
-						+"\n Les autres, retournez au travail !",0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
-						return;
-					}else {
-						sendPrivateMessage(member.getUser(), messageBuilder("Vous ne devez pas être le prof !", 
-								"Vous ne pouvez pas quitter la classe si vous êtes le prof. Vous pouvez cependant la terminer avec /classe stop!",0, null, null,
-								"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+					fieldTitle = new String[]{"/classe quit"};
+					fieldContent = new String[]{"Vous permet de quitter la classe de votre professeur."};
+					textChannel.sendMessage(messageBuilder("Vous faîtes déjà parti d'une classe", "Vous devez quitter votre ancienne classe avant de pouvoir en rejoindre une autre "
+					+ "\nPour quitter le cours utilisez la commande :",1, fieldTitle, fieldContent,
+						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+					return;
+				}
+				for (Classe cl : ClassBot.getClasses()) {
+					if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
+						cl.addUser(user, member);
+						textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
+								+" peut maintenant commencer ! \n __**N'oublie pas de te connecter dans le salon vocal "+cl.getVoiceChannel().getName()
+								+ "**__\nAller, au travail !",
+								0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
 						return;
 					}
-				}else {
+				}
+				textChannel.sendMessage(messageBuilder("Erreur", "Le nom précisé est incorrect. Vérifiez le nom et recommencez."
+						+ "\n Courage vous pourrez bientôt travailler :wink:",0, null,null,
+						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+				return;
+
+			case "quit":
+				if(!ClassBot.getMemberClasses().containsKey(member)) {
 					fieldTitle = new String[]{"/classe join @[nom_du_prof]"};
 					fieldContent = new String[]{"Vous permet de poser une question."};
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous devez faire parti d'une classe !", 
 							"Afin de pouvoir quitter une classe, vous devez faire parti d'une classe !",1, fieldTitle, fieldContent,
+							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+					return;
+				}
+				Classe cl = ClassBot.getMemberClasses().get(member);
+				if(!ClassBot.getMemberClasses().get(member).getProf().getId().equals(user.getId())) {
+					if(member.getVoiceState().inVoiceChannel() && member.getVoiceState().getChannel().getId().equals(cl.getVoiceChannel().getId())) {
+						member.mute(false).queue();
+						guild.kickVoiceMember(member).queue();
+					}
+					ClassBot.getMemberClasses().get(member).removeUser(member.getUser());
+					ClassBot.memberClasses.remove(member);
+					textChannel.sendMessage(messageBuilder(user.getName()+" a quitté la classe!","Est-ce un déserteur ? Il n'aimait plus le doux son de la voix de "+cl.getProf().getAsMention()+" ?"
+					+"\n Les autres, retournez au travail !",0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+					return;
+				} else {
+					sendPrivateMessage(member.getUser(), messageBuilder("Vous ne devez pas être le prof !", 
+							"Vous ne pouvez pas quitter la classe si vous êtes le prof. Vous pouvez cependant la terminer avec /classe stop!",0, null, null,
 							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
 					return;
 				}
@@ -253,8 +250,8 @@ public class CommandDefault {
 	private void question(User user, TextChannel textChannel, Guild guild, String command) {
 		String[] args = command.split(" ",2);
 		Member member = guild.getMember(user);
-		if(ClassBot.getMemberClasses().containsKey(guild.getMember(user)) && ClassBot.getMemberClasses().get(guild.getMember(user)).getUsers().contains(user)){
-			if(!ClassBot.getMemberClasses().get(guild.getMember(user)).getProf().getId().equals(user.getId())) {
+		if(ClassBot.getMemberClasses().containsKey(member) && ClassBot.getMemberClasses().get(member).getUsers().contains(user)){
+			if(!ClassBot.getMemberClasses().get(member).getProf().getId().equals(user.getId())) {
 				Classe cl = ClassBot.getMemberClasses().get(member);
 				if(member.getVoiceState().inVoiceChannel() && cl.getVoiceChannel().getId().equals(member.getVoiceState().getChannel().getId())) {
 					if(textChannel.getId().equals(cl.getTextChannel().getId())) {

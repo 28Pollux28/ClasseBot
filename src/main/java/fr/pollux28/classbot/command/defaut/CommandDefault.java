@@ -163,7 +163,8 @@ public class CommandDefault {
 					for (User usert : cl.getUsers()) {
 						ClassBot.getMemberClasses().remove(guild.getMember(usert));
 						if(guild.getSelfMember().canInteract(guild.getMember(usert))&&guild.getMember(usert).getVoiceState().inVoiceChannel()){
-							guild.kickVoiceMember(guild.getMember(usert));
+							guild.getMember(usert).mute(false).queue();
+							guild.kickVoiceMember(guild.getMember(usert)).queue();
 						}
 					}
 					for(Question q :cl.getQuestions()) {

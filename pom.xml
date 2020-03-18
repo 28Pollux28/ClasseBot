@@ -7,14 +7,6 @@
 
 	<name>Class Bot</name>
 	<description>Un bot pour gérer la classe pendant le CoVid-19</description>
-	
-	<dependencies>
-		<dependency>
-			<groupId>net.dv8tion</groupId>
-			<artifactId>JDA</artifactId><!--important (API Discord pour Java)-->
-			<version>4.1.1_121</version>
-		</dependency>
-	</dependencies>
 
 	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>
@@ -121,4 +113,11 @@
 		</repository>
 	</repositories>
 -->
+	<dependencies>
+		<dependency>
+			<groupId>net.dv8tion</groupId>
+			<artifactId>JDA</artifactId><!--important (API Discord pour Java)-->
+			<version>4.1.1_121</version>
+		</dependency>
+	</dependencies>
 </project>

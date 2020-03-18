@@ -1,3 +1,8 @@
+<configuration>
+	<processTypes>
+		<web>java $JAVA_OPTS -cp target/classes:target/dependency/* ClassBot</web>
+	</processTypes>
+</configuration>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
@@ -7,11 +12,6 @@
 
 	<name>Class Bot</name>
 	<description>Un bot pour gérer la classe pendant le CoVid-19</description>
-	<configuration>
-		<processTypes>
-			<web>java $JAVA_OPTS -cp target/classes:target/dependency/* ClassBot</web>
-		</processTypes>
-	</configuration>
 
 	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>

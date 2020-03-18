@@ -56,8 +56,8 @@ public class CommandDefault {
 		switch(args[1]) {
 			case "start":
 				if(!hasPermission) {
-					fieldTitle = {"/classe [help/start/stop/join/quit] [name]"};
-					fieldContent = {"Permet d'effectuer des actions sur la classe"};
+					fieldTitle = new String[]("/classe [help/start/stop/join/quit] [name]");
+					fieldContent = new String[]("Permet d'effectuer des actions sur la classe");
 					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être un prof pour démarrer un cours "+ user.getAsMention(),
 							1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
 					return;

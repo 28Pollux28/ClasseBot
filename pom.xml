@@ -38,7 +38,7 @@
 						<assembleDirectory>target</assembleDirectory>
 						<programs>
 							<program>
-								<mainClass>ClassBot</mainClass>
+								<mainClass>ClassBotTest</mainClass>
 								<name>worker</name>
 							</program>
 							<program>
@@ -48,10 +48,6 @@
 							<program>
 								<mainClass>OneOffProcess</mainClass>
 								<name>oneoff</name>
-							</program>
-							<program>
-								<mainClass>ClassBotTest</mainClass>
-								<name>classbottest</name>
 							</program>
 						</programs>
 					</configuration>

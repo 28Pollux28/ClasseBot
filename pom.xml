@@ -8,37 +8,23 @@
 	<name>Class Bot</name>
 	<description>Un bot pour gérer la classe pendant le CoVid-19</description>
 
-	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory><!--fonctionne pour BotExample-->
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
-			<!--<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>fr.pollux28.classbot.ClassBot</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-			-->
-
-
-
 			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
 			<plugin>
+				<!--<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>-->
+				<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/appassembler-maven-plugin -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>appassembler-maven-plugin</artifactId>
-				<version>1.1.1</version>
+				<version>2.1.0</version>
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
-							<mainClass>fr.pollux28.classbot.ClassBot</mainClass>
+							<mainClass>fr.pollux28.classbot.ClassBot</mainClass><!--src/main/java/fr/pollux28/classbot/ClassBot.java-->
 							<name>worker</name>
 						</program>
 						<program>
@@ -57,32 +43,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
-<!--			<plugin>
-			  <artifactId>maven-assembly-plugin</artifactId>
-			  <version>3.0.0</version>
-			  <configuration>
-			    <descriptorRefs>
-			      <descriptorRef>jar-with-dependencies</descriptorRef>
-			    </descriptorRefs>
-			  </configuration>
-			</plugin>
--->
-
-<!--			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>3.0.1</version>
-				<configuration>
-					<appName>ClassBot</appName>
-					
-					<processTypes>
-						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* BotExample</web>
-					</processTypes>
-				</configuration>
-			</plugin>
--->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -92,7 +52,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 

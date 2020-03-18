@@ -22,7 +22,10 @@ public class ClassBot implements Runnable{
 	static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();
 	
 	public ClassBot() throws LoginException {
-		jda = new JDABuilder(AccountType.BOT).setToken(System.getenv("TOKEN")).build();
+		jda = new JDABuilder(AccountType.BOT)
+			.setToken(System.getenv("TOKEN"))
+			.setActivity(Activity.watching("/classe help"))
+			.build();
 		jda.addEventListener(new BotListener(commandMap));
 	}
 	

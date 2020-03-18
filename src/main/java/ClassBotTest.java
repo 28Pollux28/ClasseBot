@@ -64,7 +64,7 @@ public class ClassBotTest implements Runnable {
 		System.out.println("Bot is Starting... (main)");
 		 
 		try {
-			ClassBotTest classBot = new ClassBotTest();
+			ClassBotTest classBotTest = new ClassBotTest();
 			new Thread(classBotTest, "botTest").start();
 		} catch (Exception e) {}
 		

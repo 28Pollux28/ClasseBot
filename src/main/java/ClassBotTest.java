@@ -15,7 +15,7 @@ import net.dv8tion.jda.api.entities.Member;
 
 public class ClassBotTest implements Runnable {
 	static public ArrayList<ClasseTest> classes = new ArrayList<ClasseTest>();
-	private final JDA jda;
+	//private final JDA jda;
 	private final CommandMapTest commandMap = new CommandMapTest(this);
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
@@ -23,8 +23,8 @@ public class ClassBotTest implements Runnable {
 	
 	public ClassBotTest() throws LoginException {
 		System.out.println("Bot is Starting...");
-		jda = new JDABuilder(AccountType.BOT).setToken(System.getenv("TOKEN")).build();
-		jda.addEventListener(new BotListenerTest(commandMap));
+		//jda = new JDABuilder(AccountType.BOT).setToken(System.getenv("TOKEN")).build();
+		//jda.addEventListener(new BotListenerTest(commandMap));
 		System.out.println("Started");
 	}
 	
@@ -55,7 +55,8 @@ public class ClassBotTest implements Runnable {
 	}
 	
 	public JDA getJda() {
-		return jda;
+		//return jda;
+		return 0;
 	}
 	
 	public static void main(String[] args) {

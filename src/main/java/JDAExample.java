@@ -67,10 +67,7 @@ public class Bot extends ListenerAdapter
         {
             MessageChannel channel = event.getChannel();
             long time = System.currentTimeMillis();
-            channel.sendMessage("Pong!") /* => RestAction<Message> */
-                   .queue(response /* => Message */ => {
-                       response.editMessageFormat("Pong: %d ms", System.currentTimeMillis() - time).queue();
-                   });
+            channel.sendMessage("Pong!");
         }
     }
 }

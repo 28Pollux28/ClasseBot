@@ -30,12 +30,12 @@
 
 
 			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<version>1.1.1</version>
 				<!--<groupId>org.apache.maven.plugins</groupId>
 				<version>3.1.0</version>-->
-				<artifactId>appassembler-maven-plugin</artifactId>
+			<!--	<artifactId>appassembler-maven-plugin</artifactId>
 				
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
@@ -44,7 +44,7 @@
 						<classpathPrefix>lib/</classpathPrefix>
 						<mainClass>main.java.ClassBotTest</mainClass>
 					</archive>-->
-					<programs>
+			<!--		<programs>
 						<program>
 							<mainClass>ClassBot</mainClass>
 							<name>worker</name>
@@ -68,6 +68,8 @@
 						<phase>package</phase><goals><goal>assemble</goal></goals>
 					</execution>
 				</executions>
+
+			
 			</plugin>
 
 
@@ -78,7 +80,22 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
-			</plugin>
+			</plugin>-->
+    <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>main.java.ClassBot</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
 		</plugins>
 	</build>
 

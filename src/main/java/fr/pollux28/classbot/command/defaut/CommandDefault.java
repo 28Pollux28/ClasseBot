@@ -150,7 +150,6 @@ public class CommandDefault {
 						" dans " + classe.getTextChannel().getAsMention() + "et se connecter dans le salon vocal " +classe.getVoiceChannel().getName(),1,fieldTitle,fieldContent,
 						"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
 				return;
-				break;
 			case "stop":
 				if(!hasPermission) {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
@@ -185,20 +184,19 @@ public class CommandDefault {
 				if(args.length > 2) {
 					if(!ClassBot.getMemberClasses().containsKey(guild.getMember(user))) {
 						for (Classe cl : ClassBot.getClasses()) {
-								if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
-									cl.addUser(user, guild.getMember(user));
-									textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
-											+" peut maintenant commencer ! \n __**N'oublie pas de te connecter dans le salon vocal "+cl.getVoiceChannel().getName()
-											+ "**__\nAller, au travail !",
-											0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
-									return;
-								}
+							if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
+								cl.addUser(user, guild.getMember(user));
+								textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
+										+" peut maintenant commencer ! \n __**N'oublie pas de te connecter dans le salon vocal "+cl.getVoiceChannel().getName()
+										+ "**__\nAller, au travail !",
+										0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+								return;
 							}
-							textChannel.sendMessage(messageBuilder("Erreur", "Le nom précisé est incorrect. Vérifiez le nom et recommencez."
-									+ "\n Courage vous pourrez bientôt travailler :wink:",0, null,null,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
-							return;
-
+						}
+						textChannel.sendMessage(messageBuilder("Erreur", "Le nom précisé est incorrect. Vérifiez le nom et recommencez."
+								+ "\n Courage vous pourrez bientôt travailler :wink:",0, null,null,
+								"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+						return;
 					}else {
 						fieldTitle = new String[]{"/classe quit"};
 						fieldContent = new String[]{"Vous permet de quitter la classe de votre professeur."};
@@ -207,14 +205,12 @@ public class CommandDefault {
 						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
 						return;
 					}
-
 				}else {
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous devez préciser le nom du prof !", 
 							"/classe join @[nomduprof]",0, null, null,
 							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
 					return;
 				}
-				break;
 			case "quit":
 				if(ClassBot.getMemberClasses().containsKey(member)) {
 					Classe cl = ClassBot.getMemberClasses().get(member);
@@ -242,7 +238,6 @@ public class CommandDefault {
 							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
 					return;
 				}
-				break;
 			case "help":
 				fieldTitle = new String[]{"/classe help","/classe start [name]","/classe join @[nom du prof]","/classe stop","/classe quit","/question [question]"};
 				fieldContent = new String[]{"Ouvre cette interface","Permet de créer une classe si vous êtes prof. Vous devez être connecté dans un salon vocal et textuel où aucune classe n'est lancée,"
@@ -251,7 +246,7 @@ public class CommandDefault {
 								+ "demander la parole au professeur pour pouvoir poser une question."};
 				textChannel.sendMessage(messageBuilder("Aide", "Liste des différentes commandes :",6,fieldTitle,fieldContent,
 						"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
-				break;
+				return;
 		}
 	}
 	@Command(name = "question", type = ExecutorType.USER)

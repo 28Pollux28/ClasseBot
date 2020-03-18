@@ -27,21 +27,21 @@
 							<mainClass>fr.pollux28.classbot.ClassBot</mainClass><!--src/main/java/fr/pollux28/classbot/ClassBot.java-->
 							<name>worker</name>
 						</program>
-						<program>
+						<!--<program>
 							<mainClass>WorkerProcess</mainClass>
 							<name>workerTest</name>
 						</program>
 						<program>
 							<mainClass>OneOffProcess</mainClass>
 							<name>oneoff</name>
-						</program>
+						</program>-->
 					</programs>
 				</configuration>
-				<executions>
+				<!--<executions>
 					<execution>
 						<phase>package</phase><goals><goal>assemble</goal></goals>
 					</execution>
-				</executions>
+				</executions>-->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

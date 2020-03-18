@@ -1,5 +1,5 @@
 //package fr.pollux28.classbot;
-package main.java;
+//package main.java;
 
 /*import java.util.ArrayList;
 import java.util.HashMap;

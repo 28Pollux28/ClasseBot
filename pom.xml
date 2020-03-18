@@ -50,6 +50,9 @@
 							<name>oneoff</name>
 						</program>
 					</programs>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* fr.pollux28.classbot.ClassBot</web>
+					</processTypes>
 				</configuration>
 				<executions>
 					<execution>

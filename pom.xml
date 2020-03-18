@@ -32,34 +32,34 @@
 			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
 		<!--	<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-					<artifactId>appassembler-maven-plugin</artifactId>
-					<version>1.1.1</version>
-					<configuration>
-						<assembleDirectory>target</assembleDirectory>
-						<programs>
-							<program>
-								<mainClass>ClassBotTest</mainClass>
-								<name>worker</name>
-							</program>
-							<program>
-								<mainClass>WorkerProcess</mainClass>
-								<name>workerTest</name>
-							</program>
-							<program>
-								<mainClass>OneOffProcess</mainClass>
-								<name>oneoff</name>
-							</program>
-						</programs>
-					</configuration>
-					<executions>
-						<execution>
-							<phase>package</phase><goals><goal>assemble</goal></goals>
-						</execution>
-					</executions>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<configuration>
+					<assembleDirectory>target</assembleDirectory>
+					<programs>
+						<program>
+							<mainClass>ClassBotTest</mainClass>
+							<name>worker</name>
+						</program>
+						<program>
+							<mainClass>WorkerProcess</mainClass>
+							<name>workerTest</name>
+						</program>
+						<program>
+							<mainClass>OneOffProcess</mainClass>
+							<name>oneoff</name>
+						</program>
+					</programs>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase><goals><goal>assemble</goal></goals>
+					</execution>
+				</executions>
 			</plugin>-->
 
 
-			<plugin>
+			<!--<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
 				<configuration>
@@ -74,36 +74,43 @@
 			    <descriptorRefs>
 			      <descriptorRef>jar-with-dependencies</descriptorRef>
 			    </descriptorRefs>
-			    <finalName>helloworld</finalName>
 			  </configuration>
+			</plugin>-->
+			<plugin>
+				<groupId>main.java.BotExample</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
 
 	<repositories>
+		<!--important https://medium.com/discord-bots/making-a-basic-discord-bot-with-java-834949008c2b#0aec-->
 		<repository>
 			<id>jcenter</id>
 			<name>jcenter-bintray</name>
 			<url>https://jcenter.bintray.com</url>
 		</repository>
-		<repository>
+<!--		<repository>
 			<id>central</id>
 			<name>bintray</name>
 			<url>https://jcenter.bintray.com</url>
 		</repository>
+-->
 	</repositories>
 
 	<dependencies>
+		<!--important (API Discord pour Java)-->
 		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>
-			<version>4.1.1_101</version>
+			<version>4.1.1_121</version>
 		</dependency>
-		<dependency>
+<!--		<dependency>
 			<groupId>com.sedmelluq</groupId>
 			<artifactId>lavaplayer</artifactId>
 			<version>1.3.34</version>
 		</dependency>
+-->
 	</dependencies>
 
 </project>

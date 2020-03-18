@@ -49,6 +49,10 @@
 								<mainClass>OneOffProcess</mainClass>
 								<name>oneoff</name>
 							</program>
+							<program>
+								<mainClass>ClassBotTest</mainClass>
+								<name>classbottest</name>
+							</program>
 						</programs>
 					</configuration>
 					<executions>

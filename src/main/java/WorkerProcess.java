@@ -1,4 +1,4 @@
-public class WorkerProcess
+public class WorkerProcess implements Runnable
 {
     public static void main(String[] args)
     {

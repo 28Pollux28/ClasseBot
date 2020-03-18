@@ -10,7 +10,7 @@
 
 	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>
-		<!--<sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>-->
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<!--<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -38,16 +38,16 @@
 						<assembleDirectory>target</assembleDirectory>
 						<programs>
 							<program>
-								<mainClass><!--WorkerProcess-->ClassBot</mainClass>
+								<mainClass>ClassBot</mainClass>
 								<name>worker</name>
-							</program>
-							<program>
-								<mainClass>OneOffProcess</mainClass>
-								<name>oneoff</name>
 							</program>
 							<program>
 								<mainClass>WorkerProcess</mainClass>
 								<name>workerTest</name>
+							</program>
+							<program>
+								<mainClass>OneOffProcess</mainClass>
+								<name>oneoff</name>
 							</program>
 						</programs>
 					</configuration>

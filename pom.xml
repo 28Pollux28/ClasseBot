@@ -2,7 +2,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.pollux28</groupId>
-	<artifactId>ClasseBot</artifactId>
+	<artifactId>ClassBot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>Class Bot</name>

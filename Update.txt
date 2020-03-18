@@ -12,4 +12,4 @@ Commandes spécifiques:
 				
 				
 /classe mute : activer ou désactiver le mute forcé
-c'est tout
+/classe  : switch default case -> help

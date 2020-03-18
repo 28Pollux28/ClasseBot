@@ -328,7 +328,7 @@ public class CommandDefault {
 			}
 		}
 
-		eb.setFooter("ClasseBot -- ©Valentin Lemaire -- Credits: Jérome Lecuyer");
+		eb.setFooter("ClasseBot -- ©Valentin Lemaire -- Credits: Jérôme Lécuyer");
 		eb.setThumbnail(thumb);
 		MessageEmbed message = eb.build();
 		return message;

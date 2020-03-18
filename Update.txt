@@ -4,3 +4,4 @@ Updates :
 - /classe info : sans [name] display les != classes avec leur nom + nbr de classes + nbr élèves
 				avec : d
 /classe mute : activer ou désactiver le mute forcé
+c'est tout

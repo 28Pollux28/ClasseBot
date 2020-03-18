@@ -31,31 +31,38 @@
 
 			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-					<artifactId>appassembler-maven-plugin</artifactId>
-					<version>1.1.1</version>
-					<configuration>
-						<assembleDirectory>target</assembleDirectory>
-						<programs>
-							<program>
-								<mainClass>ClassBotTest</mainClass>
-								<name>worker</name>
-							</program>
-							<program>
-								<mainClass>WorkerProcess</mainClass>
-								<name>workerTest</name>
-							</program>
-							<program>
-								<mainClass>OneOffProcess</mainClass>
-								<name>oneoff</name>
-							</program>
-						</programs>
-					</configuration>
-					<executions>
-						<execution>
-							<phase>package</phase><goals><goal>assemble</goal></goals>
-						</execution>
-					</executions>
+				<!--<groupId>org.codehaus.mojo</groupId>-->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<!--<version>1.1.1</version>-->
+				<version>3.1.0</version>
+				<configuration>
+					<assembleDirectory>target</assembleDirectory>
+					<archive>
+						<addClassPath>true</addClassPath>
+						<classpathPrefix>lib/</classpathPrefix>
+						<mainClass>main.java.ClassBotTest</mainClass>
+					</archive>
+					<programs>
+						<program>
+							<mainClass>ClassBotTest</mainClass>
+							<name>worker</name>
+						</program>
+						<program>
+							<mainClass>WorkerProcess</mainClass>
+							<name>workerTest</name>
+						</program>
+						<program>
+							<mainClass>OneOffProcess</mainClass>
+							<name>oneoff</name>
+						</program>
+					</programs>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase><goals><goal>assemble</goal></goals>
+					</execution>
+				</executions>
 			</plugin>
 
 

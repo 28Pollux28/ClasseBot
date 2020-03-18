@@ -210,7 +210,7 @@ public class BotListener implements EventListener {
 				eb.addField(fieldTitle[i], fieldContent[i], false);
 			}
 		}
-		eb.setFooter("ClasseBot -- ©Valentin Lemaire");
+		eb.setFooter("ClasseBot -- ©Valentin Lemaire -- Credits: Jérome LEcuyer");
 		eb.setThumbnail("http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png");
 		MessageEmbed message = eb.build();
 		return message;

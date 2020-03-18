@@ -1,23 +1,24 @@
 //package fr.pollux28.classbot;
+package main.java;
 
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Scanner;*/
 
 import javax.security.auth.login.LoginException;
 
 //import fr.pollux28.classbot.command.CommandMap;
 //import fr.pollux28.classbot.event.BotListener;
-import net.dv8tion.jda.api.AccountType;
+/*import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Member;*/
 
 public class ClassBotTest implements Runnable {
 	//static public ArrayList<Classe> classes = new ArrayList<Classe>();
 	/*private final JDA jda;
 	private final CommandMap commandMap = new CommandMap(this);*/
-	private boolean running;
+	//private boolean running;
 	/*private final Scanner scanner = new Scanner(System.in);
 	//static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();
 	
@@ -37,8 +38,8 @@ public class ClassBotTest implements Runnable {
 	
 	@Override
 	public void run() {
-		running = true;
-		/*while(running) {
+		/*running = true;
+		while(running) {
 			if(scanner.hasNextLine()) {
 				//commandMap.commandConsole(scanner.nextLine());
         			scanner.nextLine();//temporaire, retirer quant commandMap sera dispo
@@ -51,7 +52,8 @@ public class ClassBotTest implements Runnable {
 	}
 	
 	public void setRunning(boolean running) {
-		this.running = running;
+		//this.running = running;
+		System.out.println("I can't run for the moment, sorry");
 	}
 	
 	/*public JDA getJda() {

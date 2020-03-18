@@ -16,7 +16,7 @@ import net.dv8tion.jda.api.entities.Member;
 
 public class ClassBotTest implements Runnable {
 	//static public ArrayList<Classe> classes = new ArrayList<Classe>();
-	private final JDA jda;
+	//private final JDA jda;
 	//private final CommandMap commandMap = new CommandMap(this);
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
@@ -57,9 +57,9 @@ public class ClassBotTest implements Runnable {
 		System.out.println("I can't run for the moment, sorry");
 	}
 	
-	public JDA getJda() {
+	/*public JDA getJda() {
 		return jda;
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		System.out.println("Bot is Starting... (main)");

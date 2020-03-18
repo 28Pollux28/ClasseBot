@@ -37,11 +37,11 @@
 						</program>-->
 					</programs>
 				</configuration>
-				<!--<executions>
+				<executions><!--important-->
 					<execution>
 						<phase>package</phase><goals><goal>assemble</goal></goals>
 					</execution>
-				</executions>-->
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -61,11 +61,11 @@
 			<name>jcenter-bintray</name>
 			<url>https://jcenter.bintray.com</url>
 		</repository>
-		<repository>
+		<!--<repository>
 			<id>central</id>
 			<name>Maven Repository Switchboard</name>
 			<url>https://repo1.maven.org/maven2/</url>
-		</repository>
+		</repository>-->
 	</repositories>
 
 	<dependencies>

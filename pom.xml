@@ -91,7 +91,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>main.java.ClassBot</mainClass>
+            <mainClass>main.java.ClassBotTest</mainClass>
           </manifest>
         </archive>
       </configuration>

@@ -2,7 +2,7 @@ package main.java.command;
 
 import java.lang.reflect.Method;
 
-import java.main.command.Command.ExecutorType;
+import java.main.command.CommandTest.ExecutorType;
 
 public final class SimpleCommandTest {
 

@@ -48,7 +48,7 @@ public class BotListenerTest implements EventListener {
 			Member member = event.getMember();
 			String emoji =event.getReaction().getReactionEmote().getEmoji();
 			if(emoji.equals("❌") || emoji.equals("✅")) {
-				for (Classe cl : ClassBotTest.getClasses()) {
+				for (ClasseTest cl : ClassBotTest.getClasses()) {
 					if(cl.getTextChannel().getId().equals(event.getChannel().getId())) {
 						if(cl.getQuestionByMessageID(event.getMessageId()) != null) {
 							QuestionTest q = cl.getQuestionByMessageID(event.getMessageId());
@@ -112,7 +112,7 @@ public class BotListenerTest implements EventListener {
 		Member member = event.getMember(); 
 		Guild guild = event.getGuild();
 		VoiceChannel vc = event.getChannelJoined();		
-		for(Classe cl: ClassBotTest.getClasses()) {
+		for(ClasseTest cl: ClassBotTest.getClasses()) {
 			if(guild.getId().equals(cl.getGuild().getId()) && cl.getVoiceChannel().getId().equals(vc.getId()) && !cl.getUsers().contains(user)) {
 				if(guild.getSelfMember().canInteract(member)) {
 					guild.kickVoiceMember(member).queue();
@@ -156,7 +156,7 @@ public class BotListenerTest implements EventListener {
 		Member member = event.getMember(); 
 		Guild guild = event.getGuild();
 		VoiceChannel vc = event.getChannelJoined();
-		for(Classe cl: ClassBotTest.getClasses()) {
+		for(ClasseTest cl: ClassBotTest.getClasses()) {
 			if(guild.getId().equals(cl.getGuild().getId()) && cl.getVoiceChannel().getId().equals(vc.getId()) && !cl.getUsers().contains(user)) {
 				if(guild.getSelfMember().canInteract(member)) {
 					guild.kickVoiceMember(member).queue();

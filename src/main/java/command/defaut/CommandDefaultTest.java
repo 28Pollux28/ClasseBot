@@ -27,16 +27,16 @@ public class CommandDefaultTest {
 		this.classBot = classBot;
 	}
 
-	@Command(name = "stop", type = ExecutorType.CONSOLE)
+	@CommandTest(name = "stop", type = ExecutorType.CONSOLE)
 	private void stop() {
 		classBot.setRunning(false);
 	}
 
-	@Command(name="info", type =ExecutorType.USER)
+	@CommandTest(name="info", type =ExecutorType.USER)
 	private void info(Guild guild,User user, MessageChannel channel) {
 		channel.sendMessage(user.getAsMention() + "dans le channel " +channel.getName()).queue();
 	}
-	@Command(name="classe", type=ExecutorType.USER )
+	@CommandTest(name="classe", type=ExecutorType.USER )
 	private void classe(User user, TextChannel textChannel, Guild guild, String command) {
 		String[] args = command.split(" ");
 		if(args[1].equalsIgnoreCase("start")) {
@@ -66,10 +66,10 @@ public class CommandDefaultTest {
 							1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
 					return;
 				}
-				Classe classe = new Classe(name, user, guild, vc, textChannel);
+				ClasseTest classe = new ClasseTest(name, user, guild, vc, textChannel);
 				classe.setUsers(new ArrayList<User>());
 				classe.addUser(user, guild.getMember(user));
-				for (Classe cl : ClassBotTest.getClasses()) {
+				for (ClasseTest cl : ClassBotTest.getClasses()) {
 					if(cl.getGuild().getId().equals(classe.getGuild().getId())) {
 						if(cl.getName().equalsIgnoreCase(classe.getName())) {
 							String[] fieldTitle = {"/classe [help/start/stop/join/quit] [name]"};
@@ -158,7 +158,7 @@ public class CommandDefaultTest {
 						1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
 				return;
 			}
-			for(Classe cl : ClassBotTest.getClasses()) {
+			for(ClasseTest cl : ClassBotTest.getClasses()) {
 				if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getId().equals(user.getId()) && cl.getTextChannel() == textChannel) {
 					for (User usert : cl.getUsers()) {
 						ClassBotTest.getMemberClasses().remove(guild.getMember(usert));
@@ -166,7 +166,7 @@ public class CommandDefaultTest {
 							guild.kickVoiceMember(guild.getMember(usert));
 						}
 					}
-					for(Question q :cl.getQuestions()) {
+					for(QuestionTest q :cl.getQuestions()) {
 						q.getMessage().delete().queue();
 						cl.getQuestions().remove(q);
 					}
@@ -182,7 +182,7 @@ public class CommandDefaultTest {
 		}else if(args[1].equalsIgnoreCase("join")) {
 			if(args[2] != null) {
 				if(!ClassBotTest.getMemberClasses().containsKey(guild.getMember(user))) {
-						for (Classe cl : ClassBotTest.getClasses()) {
+						for (ClasseTest cl : ClassBotTest.getClasses()) {
 							if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
 								cl.addUser(user, guild.getMember(user));
 								textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
@@ -209,7 +209,7 @@ public class CommandDefaultTest {
 		}else if(args[1].equalsIgnoreCase("quit")) {
 			Member member =guild.getMember(user);
 			if(ClassBotTest.getMemberClasses().containsKey(member)) {
-				Classe cl = ClassBotTest.getMemberClasses().get(member);
+				ClasseTest cl = ClassBotTest.getMemberClasses().get(member);
 				if(!ClassBotTest.getMemberClasses().get(member).getProf().getId().equals(user.getId())) {
 					if(member.getVoiceState().inVoiceChannel() && member.getVoiceState().getChannel().getId().equals(cl.getVoiceChannel().getId())) {
 						member.mute(false).queue();
@@ -245,18 +245,18 @@ public class CommandDefaultTest {
 					"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
 		}
 	}
-	@Command(name = "question", type = ExecutorType.USER)
+	@CommandTest(name = "question", type = ExecutorType.USER)
 	private void question(User user, TextChannel textChannel, Guild guild, String command) {
 		String[] args = command.split(" ",2);
 		Member member = guild.getMember(user);
 		if(ClassBotTest.getMemberClasses().containsKey(guild.getMember(user)) && ClassBotTest.getMemberClasses().get(guild.getMember(user)).getUsers().contains(user)){
 			if(!ClassBotTest.getMemberClasses().get(guild.getMember(user)).getProf().getId().equals(user.getId())) {
-				Classe cl = ClassBotTest.getMemberClasses().get(member);
+				ClasseTest cl = ClassBotTest.getMemberClasses().get(member);
 				if(member.getVoiceState().inVoiceChannel() && cl.getVoiceChannel().getId().equals(member.getVoiceState().getChannel().getId())) {
 					if(textChannel.getId().equals(cl.getTextChannel().getId())) {
 						if(args.length >1) {
 							String subject = args[1];
-							Question question = new Question(user, subject, guild);
+							QuestionTest question = new QuestionTest(user, subject, guild);
 							if(cl.getQuestionByMember(member) == null) {
 								cl.addQuestion(question);
 								textChannel.sendMessage(messageBuilder(user.getName()+" a une question !",cl.getProf().getAsMention()+" "+subject+" "

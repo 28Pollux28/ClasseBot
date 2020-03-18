@@ -44,7 +44,8 @@ public class CommandDefault {
 		args[1] = args[1].toLowerCase();
 		
 		boolean hasPermission = false;
-		List<Role> roles = guild.getMember(user).getRoles();
+		Member member = guild.getMember(user);
+		List<Role> roles = member.getRoles();
 		for (Role role : roles) {
 			if(role.getName().equalsIgnoreCase("prof")) {
 				hasPermission = true;
@@ -120,20 +121,20 @@ public class CommandDefault {
 				}
 
 				ClassBot.getClasses().add(classe);
-				for(Member member : classe.getVoiceChannel().getMembers()) {
-					if(guild.getSelfMember().canInteract(member)){
-						if(!classe.getUsers().contains(member.getUser())) {
-							guild.kickVoiceMember(member).queue();
+				for(Member memberVoiceChannel : classe.getVoiceChannel().getMembers()) {
+					if(guild.getSelfMember().canInteract(memberVoiceChannel)){
+						if(!classe.getUsers().contains(memberVoiceChannel.getUser())) {
+							guild.kickVoiceMember(memberVoiceChannel).queue();
 							fieldTitle = new String[]{"/classe join @[nom du prof]"};
 							fieldContent = new String[]{"Vous permet de rejoindre la classe de votre professeur."};
-							sendPrivateMessage(member.getUser(), messageBuilder("Vous avez été déconnecté", "Une classe a été lancée dans ce salon "+classe.getVoiceChannel().getName()
+							sendPrivateMessage(memberVoiceChannel.getUser(), messageBuilder("Vous avez été déconnecté", "Une classe a été lancée dans ce salon "+classe.getVoiceChannel().getName()
 									+ "\nPour rejoindre le cours utilisez la commande :",1, fieldTitle, fieldContent,
 									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
 						}
 					}else {
 						fieldTitle = new String[]{"/classe join @[nom du prof]"};
 						fieldContent = new String[]{"Vous permet de rejoindre la classe de votre professeur."};
-						if(!classe.getUsers().contains(member.getUser())) sendPrivateMessage(member.getUser(), messageBuilder("Merci de vous déconnecter "+member.getUser().getAsTag(),
+						if(!classe.getUsers().contains(memberVoiceChannel.getUser())) sendPrivateMessage(memberVoiceChannel.getUser(), messageBuilder("Merci de vous déconnecter "+memberVoiceChannel.getUser().getAsTag(),
 								"Un cours a débuté dans le salon "+
 						classe.getVoiceChannel().getName()+"\nPour ne pas le perturber, merci de vous déconnecter. \n"
 								+ "Pour rejoindre le cours utilisez la commande :", 1, fieldTitle, fieldContent
@@ -181,7 +182,6 @@ public class CommandDefault {
 				}
 				break;
 			case "join":
-				Member member = guild.getMember(user);
 				if(args.length > 2) {
 					if(!ClassBot.getMemberClasses().containsKey(guild.getMember(user))) {
 						for (Classe cl : ClassBot.getClasses()) {
@@ -216,7 +216,6 @@ public class CommandDefault {
 				}
 				break;
 			case "quit":
-				Member member =guild.getMember(user);
 				if(ClassBot.getMemberClasses().containsKey(member)) {
 					Classe cl = ClassBot.getMemberClasses().get(member);
 					if(!ClassBot.getMemberClasses().get(member).getProf().getId().equals(user.getId())) {

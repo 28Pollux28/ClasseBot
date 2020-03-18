@@ -39,11 +39,11 @@
 				
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
-					<archive>
+					<!--<archive>
 						<addClassPath>true</addClassPath>
 						<classpathPrefix>lib/</classpathPrefix>
 						<mainClass>main.java.ClassBotTest</mainClass>
-					</archive>
+					</archive>-->
 					<programs>
 						<program>
 							<mainClass>ClassBotTest</mainClass>

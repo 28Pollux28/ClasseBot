@@ -126,6 +126,7 @@
 	</build>
 
 	<repositories>
+		<!--important https://medium.com/discord-bots/making-a-basic-discord-bot-with-java-834949008c2b#0aec-->
 		<repository>
 			<id>jcenter</id>
 			<name>jcenter-bintray</name>
@@ -146,6 +147,7 @@
 			<artifactId>heroku-maven-plugin</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		<!--important (API Discord pour Java)-->
 		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>

@@ -46,7 +46,7 @@ public class ClassBotTest implements Runnable {
 		}
 		scanner.close();
 		System.out.println("Bot Stopped");
-		jda.shutdown();
+		//jda.shutdown();
 		System.exit(0);
 	}
 	

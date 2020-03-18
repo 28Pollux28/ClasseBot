@@ -45,7 +45,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>main.java.ClassBotTest</mainClass>
+							<mainClass>ClassBotTest</mainClass>
 						</manifest>
 					</archive>
 					<programs>
@@ -88,7 +88,7 @@
 							<name>worker2</name>
 						</program>
 						<program>
-							<mainClass>main.java.WorkerProcess</mainClass>
+							<mainClass>WorkerProcess</mainClass>
 							<name>workertest2</name>
 						</program>
 					</programs>

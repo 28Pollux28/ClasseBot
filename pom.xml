@@ -29,50 +29,46 @@
 
 
 
-			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
-			<!--<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<version>1.1.1</version>
-			-->	<!--<groupId>org.apache.maven.plugins</groupId>
-				<version>3.1.0</version>-->
-			<!--	<artifactId>appassembler-maven-plugin</artifactId>
+			
+			<plugin>
+				<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
+				<!--<groupId>org.codehaus.mojo</groupId>
+				<version>1.1.1</version>-->	
 				
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<!--<artifactId>appassembler-maven-plugin</artifactId> c'est une id donc on s'en fiche du nom (normalement)-->
+				<version>3.2.0</version>
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
-			-->		<!--<archive>
-						<addClassPath>true</addClassPath>
-						<classpathPrefix>lib/</classpathPrefix>
-						<mainClass>main.java.ClassBotTest</mainClass>
-					</archive>-->
-			<!--		<programs>
-						<program>
-							<mainClass>ClassBot</mainClass>
-							<name>worker</name>
-						</program>
-						<program>
-							<mainClass>ClassBotTest</mainClass>
-							<name>workertest</name>
-						</program>
-						<program>
-							<mainClass>WorkerProcess</mainClass>
-							<name>workerprocess</name>
-						</program>
-						<program>
-							<mainClass>OneOffProcess</mainClass>
-							<name>oneoff</name>
-						</program>
-					</programs>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>main.java.ClassBotTest</mainClass>
+						</manifest>
+					</archive>
+					<programs>
+							<program>
+								<mainClass>ClassBot</mainClass>
+								<name>worker</name>
+							</program>
+							<program>
+								<mainClass>ClassBotTest</mainClass>
+								<name>workertest</name>
+							</program>
+							<program>
+								<mainClass>WorkerProcess</mainClass>
+								<name>workerprocess</name>
+							</program>
+							<program>
+								<mainClass>OneOffProcess</mainClass>
+								<name>oneoff</name>
+							</program>
+						</programs>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase><goals><goal>assemble</goal></goals>
-					</execution>
-				</executions>
-
-			
 			</plugin>
-
--->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
@@ -81,21 +77,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-    <plugin>
-      <!-- Build an executable JAR -->
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-jar-plugin</artifactId>
-      <version>3.1.0</version>
-      <configuration>
-        <archive>
-          <manifest>
-            <addClasspath>true</addClasspath>
-            <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>main.java.ClassBotTest</mainClass>
-          </manifest>
-        </archive>
-      </configuration>
-    </plugin>
 		</plugins>
 	</build>
 

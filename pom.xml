@@ -10,8 +10,7 @@
 
 	<!--<destFileName>MyBot.jar</destFileName> fait effet !-->
 	<build>
-		<!--<sourceDirectory>src/main/java</sourceDirectory> fonctionne pour BotExample-->
-		<sourceDirectory>src/fr/pollux28/classbot</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory><!--fonctionne pour BotExample-->
 		<plugins>
 			<!--<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>

@@ -21,6 +21,8 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
 
 public class CommandDefault {
 	private final ClassBot classBot;
+	final String imgLivre = "http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png";
+	final String imgError = "https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png";
 
 
 	public CommandDefault(ClassBot classBot) {
@@ -60,13 +62,13 @@ public class CommandDefault {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
 					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être un prof pour démarrer un cours "+ user.getAsMention(),
-							1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+							1,fieldTitle,fieldContent,imgError)).queue();
 					return;
 				}
 
 				if(args.length < 3) {
 					textChannel.sendMessage(messageBuilder("Erreur Syntaxe", user.getAsMention() + " La comande est du format /classe start name", 0, null, null,
-							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+							imgError)).queue();
 					return;
 				}
 				String name = args[2];
@@ -76,7 +78,7 @@ public class CommandDefault {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
 					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 					textChannel.sendMessage(messageBuilder("Erreur", "Merci de vous connecter sur un channel vocal pour démarrer un cours "+ user.getAsMention(),
-							1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+							1,fieldTitle,fieldContent,imgError)).queue();
 					return;
 				}
 				Classe classe = new Classe(name, user, guild, vc, textChannel);
@@ -89,7 +91,7 @@ public class CommandDefault {
 							fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 							classe.getTextChannel().sendMessage(messageBuilder("Erreur", "Une classe nommée __**"+ classe.getName().toUpperCase()+
 									"**__ existe déjà ! \n Choississez un autre nom "+ classe.getProf().getAsMention()
-									+" !", 1, fieldTitle, fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+									+" !", 1, fieldTitle, fieldContent,imgError)).queue();
 							return;
 						}
 						if(cl.getProf().getName().equals(classe.getProf().getName())) {
@@ -97,7 +99,7 @@ public class CommandDefault {
 							fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 							classe.getTextChannel().sendMessage(messageBuilder("Erreur", classe.getProf().getAsMention() + " Vous êtes actuellement professeur dans "+ cl.getName()+" sur le salon "
 									+ cl.getTextChannel().getAsMention()+"\n Fermez cette classe avec /classe stop avant d'en lancer une nouvelle !", 1, fieldTitle, fieldContent,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+									imgError)).queue();
 							return;
 						}
 						if(cl.getVoiceChannel() == classe.getVoiceChannel()) {
@@ -105,7 +107,7 @@ public class CommandDefault {
 							fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 							classe.getTextChannel().sendMessage(messageBuilder("Erreur", classe.getProf().getAsMention()+" Une classe est déjà présente dans ce salon vocal "
 									+classe.getVoiceChannel().getName()+ "\n Choisissez un autre salon vocal pour pouvoir lancer votre classe.",1,fieldTitle,fieldContent,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+									imgError)).queue();
 							return;
 						}
 						if(cl.getTextChannel() == classe.getTextChannel()) {
@@ -113,7 +115,7 @@ public class CommandDefault {
 							fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 							classe.getTextChannel().sendMessage(messageBuilder("Erreur", classe.getProf().getAsMention()+" Une classe est déjà présente dans ce salon textuel "
 									+classe.getTextChannel().getAsMention()+ "\n Choisissez un autre salon textuel pour pouvoir lancer votre classe.",1,fieldTitle,fieldContent,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+									imgError)).queue();
 							return;
 						}
 					}
@@ -128,7 +130,7 @@ public class CommandDefault {
 							fieldContent = new String[]{"Vous permet de rejoindre la classe de votre professeur."};
 							sendPrivateMessage(memberVoiceChannel.getUser(), messageBuilder("Vous avez été déconnecté", "Une classe a été lancée dans ce salon "+classe.getVoiceChannel().getName()
 									+ "\nPour rejoindre le cours utilisez la commande :",1, fieldTitle, fieldContent,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+									imgError));
 						}
 					}else {
 						fieldTitle = new String[]{"/classe join @[nom du prof]"};
@@ -137,7 +139,7 @@ public class CommandDefault {
 								"Un cours a débuté dans le salon "+
 						classe.getVoiceChannel().getName()+"\nPour ne pas le perturber, merci de vous déconnecter. \n"
 								+ "Pour rejoindre le cours utilisez la commande :", 1, fieldTitle, fieldContent
-								,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+								,imgError));
 					}
 				}
 				fieldTitle = new String[]{"Pour arrêter la classe, "+ classe.getProf().getName()+" faites : "};
@@ -147,14 +149,14 @@ public class CommandDefault {
 						+classe.getName().toUpperCase()+"**__ de "+classe.getProf().getAsMention() +" dans le salon vocal __**"+classe.getVoiceChannel().getName() +
 						"**__ doivent écrire /classe join "+classe.getProf().getAsMention()+
 						" dans " + classe.getTextChannel().getAsMention() + "et se connecter dans le salon vocal " +classe.getVoiceChannel().getName(),1,fieldTitle,fieldContent,
-						"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+						imgLivre)).queue();
 				return;
 			case "stop":
 				if(!hasPermission) {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
 					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
 					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être un prof pour arrêter un cours "+ user.getAsMention(),
-							1,fieldTitle,fieldContent,"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+							1,fieldTitle,fieldContent,imgError)).queue();
 					return;
 				}
 				for(Classe cl : ClassBot.getClasses()) {
@@ -174,7 +176,7 @@ public class CommandDefault {
 						ClassBot.getClasses().remove(cl);
 						textChannel.sendMessage(messageBuilder("Classe terminée !", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ user.getAsMention()+" est maintenant terminée ! "
 								+ "\nN'oubliez pas de faire vos devoirs !",
-								0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+								0,null,null,imgLivre)).queue();
 						return;
 					}
 				}
@@ -183,7 +185,7 @@ public class CommandDefault {
 				if(args.length < 3) {
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous devez préciser le nom du prof !", 
 							"/classe join @[nomduprof]",0, null, null,
-							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+							imgError));
 					return;
 				}
 				if(ClassBot.getMemberClasses().containsKey(member)) {
@@ -191,7 +193,7 @@ public class CommandDefault {
 					fieldContent = new String[]{"Vous permet de quitter la classe de votre professeur."};
 					textChannel.sendMessage(messageBuilder("Vous faîtes déjà parti d'une classe", "Vous devez quitter votre ancienne classe avant de pouvoir en rejoindre une autre "
 					+ "\nPour quitter le cours utilisez la commande :",1, fieldTitle, fieldContent,
-						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+						imgError)).queue();
 					return;
 				}
 				for (Classe cl : ClassBot.getClasses()) {
@@ -200,13 +202,13 @@ public class CommandDefault {
 						textChannel.sendMessage(messageBuilder(user.getName()+" a rejoint la classe!", "La classe __**"+cl.getName().toUpperCase()+"**__ de"+ cl.getProf().getAsMention()
 								+" peut maintenant commencer ! \n __**N'oublie pas de te connecter dans le salon vocal "+cl.getVoiceChannel().getName()
 								+ "**__\nAller, au travail !",
-								0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+								0,null,null,imgLivre)).queue();
 						return;
 					}
 				}
 				textChannel.sendMessage(messageBuilder("Erreur", "Le nom précisé est incorrect. Vérifiez le nom et recommencez."
 						+ "\n Courage vous pourrez bientôt travailler :wink:",0, null,null,
-						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png")).queue();
+						imgError)).queue();
 				return;
 
 			case "quit":
@@ -215,7 +217,7 @@ public class CommandDefault {
 					fieldContent = new String[]{"Vous permet de poser une question."};
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous devez faire parti d'une classe !", 
 							"Afin de pouvoir quitter une classe, vous devez faire parti d'une classe !",1, fieldTitle, fieldContent,
-							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+							imgError));
 					return;
 				}
 				Classe cl = ClassBot.getMemberClasses().get(member);
@@ -227,12 +229,12 @@ public class CommandDefault {
 					ClassBot.getMemberClasses().get(member).removeUser(member.getUser());
 					ClassBot.memberClasses.remove(member);
 					textChannel.sendMessage(messageBuilder(user.getName()+" a quitté la classe!","Est-ce un déserteur ? Il n'aimait plus le doux son de la voix de "+cl.getProf().getAsMention()+" ?"
-					+"\n Les autres, retournez au travail !",0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+					+"\n Les autres, retournez au travail !",0,null,null,imgLivre)).queue();
 					return;
 				} else {
 					sendPrivateMessage(member.getUser(), messageBuilder("Vous ne devez pas être le prof !", 
 							"Vous ne pouvez pas quitter la classe si vous êtes le prof. Vous pouvez cependant la terminer avec /classe stop!",0, null, null,
-							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+							imgError));
 					return;
 				}
 			case "help":
@@ -242,7 +244,7 @@ public class CommandDefault {
 						"Permet aux professeurs de terminer leur classe. Nécéssaire pour en démarrer une nouvelle.","Permet aux élèves de quitter la classe", "Permet aux élèves d'une classe de "
 								+ "demander la parole au professeur pour pouvoir poser une question."};
 				textChannel.sendMessage(messageBuilder("Aide", "Liste des différentes commandes :",6,fieldTitle,fieldContent,
-						"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue();
+						imgLivre)).queue();
 				return;
 		}
 	}
@@ -263,7 +265,7 @@ public class CommandDefault {
 								textChannel.sendMessage(messageBuilder(user.getName()+" a une question !",cl.getProf().getAsMention()+" "+subject+" "
 										+ "\n Pour l'autoriser à parler, cliquez sur : :white_check_mark: sinon, cliquez sur : :x: \n Pour supprimer votre question "+user.getAsMention()+" cliquez sur :x:"
 										+ "\n si vous souhaitez le faire taire cliquez sur la :x:",
-										0,null,null,"http://img.over-blog-kiwi.com/1/67/67/20/20150628/ob_891119_livres.png")).queue(message -> {
+										0,null,null,imgLivre)).queue(message -> {
 											message.addReaction("✅").queue();
 											message.addReaction("❌").queue();
 											cl.getQuestionByMember(member).setMessage(message);
@@ -272,43 +274,42 @@ public class CommandDefault {
 								String[] fieldTitle = new String[]{"/question [question]"};
 								String[] fieldContent = new String[]{"Vous permet de poser une question."};
 								sendPrivateMessage(member.getUser(), messageBuilder("Vous ne pouvez posez qu'une seule question", 
-										"Afin de pouvoir poser une nouvelle question, merci de supprimer l'ancienne en cliquant sur la :x: situé sous le message de question",1, fieldTitle, fieldContent,
-										"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+										"Afin de pouvoir poser une nouvelle question, merci de supprimer l'ancienne en cliquant sur la :x: situé sous le message de question",1, fieldTitle, fieldContent, imgError));
 							}
 						}else {
 							String[] fieldTitle = new String[]{"/question [question]"};
 							String[] fieldContent = new String[]{"Vous permet de poser une question."};
 							sendPrivateMessage(member.getUser(), messageBuilder("Merci de préciser le sujet de votre question", 
 									"Afin de pouvoir poser une question, vous devez préciser son sujet !",1, fieldTitle, fieldContent,
-									"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+									imgError));
 						}
 					}else {
 						String[] fieldTitle = new String[]{"/question [question]"};
 						String[] fieldContent = new String[]{"Vous permet de poser une question."};
 						sendPrivateMessage(member.getUser(), messageBuilder("Merci de poser la question dans le bon salon !", 
 								"Afin de pouvoir poser une question, vous devez la poser dans le salon de votre classe, "+cl.getTextChannel().getAsMention()+" !",1, fieldTitle, fieldContent,
-								"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+								imgError));
 					}
 				}else {
 					String[] fieldTitle = new String[]{"/question [question]"};
 					String[] fieldContent = new String[]{"Vous permet de poser une question."};
 					sendPrivateMessage(member.getUser(), messageBuilder("Veuillez vous connecter dans un salon vocal", 
 							"Afin de pouvoir poser une question, vous devez vous connecter dans le salon vocal : "+cl.getVoiceChannel().getName()+" !",1, fieldTitle, fieldContent,
-							"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+							imgError));
 				}
 			}else {
 				String[] fieldTitle = new String[]{"/question [question]"};
 				String[] fieldContent = new String[]{"Vous permet de poser une question."};
 				sendPrivateMessage(member.getUser(), messageBuilder("Vous ne devez pas être le prof", 
 						"Afin de pouvoir poser une question, vous ne devez pas être le prof !",1, fieldTitle, fieldContent,
-						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+						imgError));
 			}
 		}else {
 			String[] fieldTitle = new String[]{"/question [question]"};
 			String[] fieldContent = new String[]{"Vous permet de poser une question."};
 			sendPrivateMessage(member.getUser(), messageBuilder("Vous devez faire parti d'une classe !", 
 					"Afin de pouvoir poser une question, vous devez faire parti d'une classe !",1, fieldTitle, fieldContent,
-					"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+					imgError));
 		}
 	}
 

@@ -83,14 +83,14 @@
 				<configuration>
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
-							<program>
-									<mainClass>ClassBotTest</mainClass>
-									<name>worker2</name>
-							</program>
-							<program>
-								<mainClass>WorkerProcess</mainClass>
-									<name>workertest2</name>
-							</program>
+						<program>
+							<mainClass>ClassBotTest</mainClass>
+							<name>worker2</name>
+						</program>
+						<program>
+							<mainClass>WorkerProcess</mainClass>
+							<name>workertest2</name>
+						</program>
 					</programs>
 				</configuration>
 				<executions>

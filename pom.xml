@@ -46,12 +46,16 @@
 					</archive>-->
 					<programs>
 						<program>
-							<mainClass>ClassBotTest</mainClass>
+							<mainClass>ClassBot</mainClass>
 							<name>worker</name>
 						</program>
 						<program>
+							<mainClass>ClassBotTest</mainClass>
+							<name>workertest</name>
+						</program>
+						<program>
 							<mainClass>WorkerProcess</mainClass>
-							<name>workerTest</name>
+							<name>workerprocess</name>
 						</program>
 						<program>
 							<mainClass>OneOffProcess</mainClass>

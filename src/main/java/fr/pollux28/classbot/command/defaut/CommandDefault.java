@@ -182,7 +182,7 @@ public class CommandDefault {
 
 		}else if(args[1].equalsIgnoreCase("join")) {
 			System.out.println("1");
-			if(args[2] != null) {
+			if(args.length > 2) {
 				System.out.println("2");
 				if(!ClassBot.getMemberClasses().containsKey(guild.getMember(user))) {
 					System.out.println("4");	

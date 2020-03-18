@@ -1,3 +1,8 @@
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDABuilder;
+
+import javax.security.auth.login.LoginException
+
 public class BotExample extends ListenerAdapter
 {
     public static void main(String[] args) throws LoginException
@@ -16,7 +21,7 @@ public class BotExample extends ListenerAdapter
         {
             MessageChannel channel = event.getChannel();
             long time = System.currentTimeMillis();
-            channel.sendMessage("Pong!");
+            channel.sendMessage("Pong!").queue();
         }
     }
 }

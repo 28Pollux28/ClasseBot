@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
 
-import main.java.command.CommandMap;
-import main.java.event.BotListener;
+import main.java.command.CommandMapTest;
+import main.java.event.BotListenerTest;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;

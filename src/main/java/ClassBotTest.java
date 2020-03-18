@@ -56,7 +56,7 @@ public class ClassBotTest implements Runnable {
 	
 	public JDA getJda() {
 		//return jda;
-		return 0;
+		return null;
 	}
 	
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package fr.pollux28.classbot;
+//package fr.pollux28.classbot;
 
 import java.util.ArrayList;
 import java.util.List;

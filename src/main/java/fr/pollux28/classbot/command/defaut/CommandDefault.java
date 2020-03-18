@@ -181,11 +181,9 @@ public class CommandDefault {
 			}
 
 		}else if(args[1].equalsIgnoreCase("join")) {
-			System.out.println("1");
+			Member member = guild.getMember(user);
 			if(args.length > 2) {
-				System.out.println("2");
 				if(!ClassBot.getMemberClasses().containsKey(guild.getMember(user))) {
-					System.out.println("4");	
 					for (Classe cl : ClassBot.getClasses()) {
 							if(cl.getGuild().getId().equals(guild.getId()) && cl.getProf().getAsMention().equals(args[2])) {
 								cl.addUser(user, guild.getMember(user));
@@ -202,7 +200,6 @@ public class CommandDefault {
 						return;
 					
 				}else {
-					System.out.println("5");
 					String[] fieldTitle = {"/classe quit"};
 					String[] fieldContent = {"Vous permet de quitter la classe de votre professeur."};
 					textChannel.sendMessage(messageBuilder("Vous faîtes déjà parti d'une classe", "Vous devez quitter votre ancienne classe avant de pouvoir en rejoindre une autre "
@@ -212,7 +209,10 @@ public class CommandDefault {
 				}
 				
 			}else {
-				System.out.println("3");
+				sendPrivateMessage(member.getUser(), messageBuilder("Vous devez préciser le nom du prof !", 
+						"/classe join @[nomduprof]",0, null, null,
+						"https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2015/12/1450973046wordpress-errors.png"));
+				return;
 			}
 		}else if(args[1].equalsIgnoreCase("quit")) {
 			Member member =guild.getMember(user);

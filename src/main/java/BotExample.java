@@ -14,7 +14,8 @@ public class BotExample extends ListenerAdapter
 {
     public static void main(String[] args) throws LoginException
     {
-        new JDABuilder(args[0])
+        new JDABuilder(AccountType.BOT)
+            .setToken(System.getenv("TOKEN"))
             .addEventListeners(new BotExample())
             .setActivity(Activity.playing("Type !ping"))
             .build();

@@ -24,7 +24,7 @@ public class ClassBotTest implements Runnable {
 	
 	public ClassBotTest() throws LoginException {
 		System.out.println("Bot is Starting...");
-		jda = new JDABuilder(AccountType.BOT).setToken(process.env.TOKEN).build();
+		//jda = new JDABuilder(AccountType.BOT).setToken(process.env.TOKEN).build();
 		//jda.addEventListener(new BotListener(commandMap));
 		System.out.println("Started");
 	}
@@ -48,7 +48,7 @@ public class ClassBotTest implements Runnable {
 		}
 		scanner.close();
 		System.out.println("Bot Stopped");
-		jda.shutdown();
+		//jda.shutdown();
 		System.exit(0);
 	}
 	

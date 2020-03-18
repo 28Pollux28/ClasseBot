@@ -1,5 +1,4 @@
-//package fr.pollux28.classbot;
-//package main.java;//le package fait tout bugger
+package main.java;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,66 +6,64 @@ import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
 
-import fr.pollux28.classbot.command.CommandMap;
-//import fr.pollux28.classbot.event.BotListener;
+import main.java.command.CommandMap;
+import main.java.event.BotListener;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Member;
 
 public class ClassBotTest implements Runnable {
-	//static public ArrayList<Classe> classes = new ArrayList<Classe>();
-	//private final JDA jda;
-	//private final CommandMap commandMap = new CommandMap(this);
+	static public ArrayList<ClasseTest> classes = new ArrayList<ClasseTest>();
+	private final JDA jda;
+	private final CommandMapTest commandMap = new CommandMapTest(this);
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
-	//static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();
+	static public HashMap<Member,ClasseTest> memberClasses = new HashMap<Member,ClasseTest>();
 	
 	public ClassBotTest() throws LoginException {
 		System.out.println("Bot is Starting...");
-		//jda = new JDABuilder(AccountType.BOT).setToken(process.env.TOKEN).build();
-		//jda.addEventListener(new BotListener(commandMap));
+		jda = new JDABuilder(AccountType.BOT).setToken(process.env.TOKEN).build();
+		jda.addEventListener(new BotListenerTest(commandMap));
 		System.out.println("Started");
 	}
 	
-	/*public static ArrayList<Classe> getClasses(){
+	public static ArrayList<ClasseTest> getClasses(){
 		return classes;
+		
 	}
-	public static HashMap<Member,Classe> getMemberClasses(){
+	public static HashMap<Member,ClasseTest> getMemberClasses(){
 		return memberClasses;
-	}*/
+	}
 	
 	@Override
 	public void run() {
 		running = true;
 		while(running) {
 			if(scanner.hasNextLine()) {
-				//commandMap.commandConsole(scanner.nextLine());
-        			scanner.nextLine();//temporaire, retirer quant commandMap sera dispo
+				commandMap.commandConsole(scanner.nextLine());
 			}
-			running = false;
 		}
 		scanner.close();
 		System.out.println("Bot Stopped");
-		//jda.shutdown();
+		jda.shutdown();
 		System.exit(0);
 	}
 	
 	public void setRunning(boolean running) {
-		//this.running = running;
-		System.out.println("I can't run for the moment, sorry");
+		this.running = running;
 	}
 	
-	/*public JDA getJda() {
+	public JDA getJda() {
 		return jda;
-	}*/
+	}
 	
 	public static void main(String[] args) {
 		System.out.println("Bot is Starting... (main)");
 		 
 		try {
-			ClassBotTest classBotTest = new ClassBotTest();
-			new Thread(classBotTest, "botTest").start();
+			ClassBotTest classBot = new ClassBotTest();
+			new Thread(classBot, "bot").start();
 		} catch (Exception e) {}
 		
 		System.out.println("Hello World !");	

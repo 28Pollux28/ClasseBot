@@ -261,7 +261,7 @@ public class CommandDefault {
 						if(!mute) {
 						String[] fieldTitle1 = {"/question [sujet]"};
 						String[] fieldContent1 = {"Vous permet de demander à prendre la parole."};
-						textChannel.sendMessage(messageBuilder("La classe à été rendue muette", "Pour participer vocalement, demander l'autorisation à "
+						textChannel.sendMessage(messageBuilder("La classe à été rendue muette", "Pour participer vocalement, demandez l'autorisation à "
 						+cls.getProf().getAsMention()+" avec la commande"
 								,1,fieldTitle1,fieldContent1,imgLivre)).queue();
 						return;

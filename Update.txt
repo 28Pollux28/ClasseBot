@@ -11,5 +11,5 @@ Commandes spécifiques:
   supprimer la classe: /classe quit ClasseTS3
 				
 				
-/classe mute : activer ou désactiver le mute forcé
+/classe mute : activer ou désactiver le mute forcé --done
 /classe  : switch default case -> help -- done

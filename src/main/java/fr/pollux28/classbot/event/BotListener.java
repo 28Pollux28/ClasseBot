@@ -128,19 +128,26 @@ public class BotListener implements EventListener {
 				}
 			}else if (guild.getId().equals(cl.getGuild().getId()) && cl.getVoiceChannel().getId().equals(vc.getId()) && cl.getUsers().contains(user)) {
 				if(guild.getSelfMember().canInteract(member)) {
-					guild.mute(member, true).queue();
-					String[] fieldTitle = {"/question [sujet]"};
-					String[] fieldContent = {"Vous permet de demander à prendre la parole."};
-					sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" avec la commande"
-							,1,fieldTitle,fieldContent));
+					if(cl.isMuted()) {
+						String[] fieldTitle = {"/question [sujet]"};
+						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
+						sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" avec la commande"
+								,1,fieldTitle,fieldContent));
+					}else {
+						sendPrivateMessage(user, messageBuilder("Vous avez la parole !", "Profitez-en, cela ne durera pas forcément"
+								,0,null,null));
+					}
+					guild.mute(member, cl.isMuted()).queue();
 					return;
 				}else {
-					String[] fieldTitle = {"/question [sujet]"};
-					String[] fieldContent = {"Vous permet de demander à prendre la parole."};
-					sendPrivateMessage(user, messageBuilder("Vous n'avez pas automatiquement été rendu muet", "Merci de vous muter pour ne pas déranger le cours de la classe"
-							+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
-							,1,fieldTitle,fieldContent));
-					return;
+					if(cl.isMuted()) {
+						String[] fieldTitle = {"/question [sujet]"};
+						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
+						sendPrivateMessage(user, messageBuilder("Vous n'avez pas automatiquement été rendu muet", "Merci de vous muter pour ne pas déranger le cours de la classe"
+								+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
+								,1,fieldTitle,fieldContent));
+						return;
+					}
 				}
 			}
 		}
@@ -173,19 +180,26 @@ public class BotListener implements EventListener {
 			}else if(guild.getId().equals(cl.getGuild().getId()) && cl.getVoiceChannel().getId().equals(vc.getId()) && cl.getUsers().contains(user)){
 				if(!cl.getProf().getId().equals(event.getMember().getUser().getId())) {				
 					if(guild.getSelfMember().canInteract(member)) {
-						guild.mute(member, true).queue();
-						String[] fieldTitle = {"/question [sujet]"};
-						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
-						sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getAsMention()+" avec la commande"
-								,1,fieldTitle,fieldContent));
+						if(cl.isMuted()) {
+							String[] fieldTitle = {"/question [sujet]"};
+							String[] fieldContent = {"Vous permet de demander à prendre la parole."};
+							sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" avec la commande"
+									,1,fieldTitle,fieldContent));
+						}else {
+							sendPrivateMessage(user, messageBuilder("Vous avez la parole !", "Profitez-en, cela ne durera pas forcément"
+									,0,null,null));
+						}
+						guild.mute(member, cl.isMuted()).queue();
 						return;
 					}else {
-						String[] fieldTitle = {"/question [sujet]"};
-						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
-						sendPrivateMessage(user, messageBuilder("Vous n'avez pas automatiquement été rendu muet", "Merci de vous muter pour ne pas déranger le cours de la classe"
-								+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getAsMention()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
-								,1,fieldTitle,fieldContent));
-						return;
+						if(cl.isMuted()) {
+							String[] fieldTitle = {"/question [sujet]"};
+							String[] fieldContent = {"Vous permet de demander à prendre la parole."};
+							sendPrivateMessage(user, messageBuilder("Vous n'avez pas automatiquement été rendu muet", "Merci de vous muter pour ne pas déranger le cours de la classe"
+									+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getAsMention()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
+									,1,fieldTitle,fieldContent));
+							return;
+						}
 					}
 				}else {
 					member.mute(false).queue();

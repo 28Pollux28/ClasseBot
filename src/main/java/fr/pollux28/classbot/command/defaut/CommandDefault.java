@@ -85,6 +85,7 @@ public class CommandDefault {
 				Classe classe = new Classe(name, user, guild, vc, textChannel);
 				classe.setUsers(new ArrayList<User>());
 				classe.addUser(user, member);
+				classe.setMuted(false);
 				for (Classe cl : ClassBot.getClasses()) {
 					if(cl.getGuild().getId().equals(classe.getGuild().getId())) {
 						if(cl.getName().equalsIgnoreCase(classe.getName())) {
@@ -156,7 +157,7 @@ public class CommandDefault {
 				if(!hasPermission) {
 					fieldTitle = new String[]{"/classe [help/start/stop/join/quit] [name]"};
 					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
-					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être un prof pour arrêter un cours "+ user.getAsMention(),
+					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être le prof pour arrêter un cours "+ user.getAsMention(),
 							1,fieldTitle,fieldContent,imgError)).queue();
 					return;
 				}
@@ -241,18 +242,47 @@ public class CommandDefault {
 					return;
 				}
 			case "mute":
-				Duration duration = Duration.ofSeconds(5); 
-				textChannel.sendTyping().delay(duration).queue();
+				if(!hasPermission) {
+					fieldTitle = new String[]{"/classe [help/start [name]/stop/join @[nomduProf]/quit/mute/info {nom}]"};
+					fieldContent = new String[]{"Permet d'effectuer des actions sur la classe"};
+					textChannel.sendMessage(messageBuilder("Erreur", "Vous devez être le prof pour rendre muet la classe "+ user.getAsMention(),
+							1,fieldTitle,fieldContent,imgError)).queue();
+					return;
+				}
+				for(Classe cls : ClassBot.getClasses()) {
+					if(cls.getGuild().getId().equals(guild.getId()) && cls.getProf().getId().equals(user.getId()) && cls.getTextChannel() == textChannel) {
+						boolean mute = cls.isMuted();
+						for(User usr : cls.getUsers()) {
+							if(guild.getSelfMember().canInteract(guild.getMember(usr)) && !cls.getProf().getId().equals(usr.getId())){
+								guild.getMember(usr).mute(!mute).queue();
+							}
+						}
+						cls.setMuted(!mute);
+						if(!mute) {
+						String[] fieldTitle1 = {"/question [sujet]"};
+						String[] fieldContent1 = {"Vous permet de demander à prendre la parole."};
+						textChannel.sendMessage(messageBuilder("La classe à été rendue muette", "Pour participer vocalement, demander l'autorisation à "
+						+cls.getProf().getAsMention()+" avec la commande"
+								,1,fieldTitle1,fieldContent1,imgLivre)).queue();
+						return;
+						}else {
+							textChannel.sendMessage(messageBuilder("La parole à été rendue à la plèbe", cls.getProf().getAsMention() +" vous autorise, êtres insignifiants, à parler sans modération."
+									+ "\n Vous écoutera-t-il ? C'est une autre question.."
+									,0,null,null,imgLivre)).queue();
+							return;
+						}
+					}
+				}
 				return;
 			
 			
 			default:
-				fieldTitle = new String[]{"/classe help","/classe start [name]","/classe join @[nom du prof]","/classe stop","/classe quit","/question [question]"};
+				fieldTitle = new String[]{"/classe help","/classe start [name]","/classe join @[nom du prof]","/classe stop","/classe quit","/classe mute","/question [question]"};
 				fieldContent = new String[]{"Ouvre cette interface","Permet de créer une classe si vous êtes prof. Vous devez être connecté dans un salon vocal et textuel où aucune classe n'est lancée,"
 						+ " et préciser un nom de classe unique.", "Permet aux élèves de rejoindre la classe de leur professeur. Ils doivent se connecter dans le salon vocal où la classe est lancée.",
-						"Permet aux professeurs de terminer leur classe. Nécéssaire pour en démarrer une nouvelle.","Permet aux élèves de quitter la classe", "Permet aux élèves d'une classe de "
-								+ "demander la parole au professeur pour pouvoir poser une question."};
-				textChannel.sendMessage(messageBuilder("Aide", "Liste des différentes commandes :",6,fieldTitle,fieldContent,
+						"Permet aux professeurs de terminer leur classe. Nécéssaire pour en démarrer une nouvelle.","Permet aux élèves de quitter la classe","Rend muet ou rend la parole aux élèves" ,
+						"Permet aux élèves d'une classe de demander la parole au professeur pour pouvoir poser une question."};
+				textChannel.sendMessage(messageBuilder("Aide", "Liste des différentes commandes :",7,fieldTitle,fieldContent,
 						imgLivre)).queue();
 				return;
 		}

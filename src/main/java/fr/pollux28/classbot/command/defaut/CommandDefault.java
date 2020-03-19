@@ -169,7 +169,6 @@ public class CommandDefault {
 							}
 						}
 						for(Question q :cl.getQuestions()) {
-							q.getMessage().delete().queue();
 							cl.getQuestions().remove(q);
 						}
 
@@ -226,8 +225,11 @@ public class CommandDefault {
 						member.mute(false).queue();
 						guild.kickVoiceMember(member).queue();
 					}
+					if(ClassBot.getMemberClasses().get(member).getQuestionByMember(member) != null) {
+						ClassBot.getMemberClasses().get(member).removeQuestion(ClassBot.getMemberClasses().get(member).getQuestionByMember(member));	
+					}
 					ClassBot.getMemberClasses().get(member).removeUser(member.getUser());
-					ClassBot.memberClasses.remove(member);
+					ClassBot.getMemberClasses().remove(member);
 					textChannel.sendMessage(messageBuilder(user.getName()+" a quitté la classe!","Est-ce un déserteur ? Il n'aimait plus le doux son de la voix de "+cl.getProf().getAsMention()+" ?"
 					+"\n Les autres, retournez au travail !",0,null,null,imgLivre)).queue();
 					return;
@@ -237,7 +239,7 @@ public class CommandDefault {
 							imgError));
 					return;
 				}
-			case "help":
+			default:
 				fieldTitle = new String[]{"/classe help","/classe start [name]","/classe join @[nom du prof]","/classe stop","/classe quit","/question [question]"};
 				fieldContent = new String[]{"Ouvre cette interface","Permet de créer une classe si vous êtes prof. Vous devez être connecté dans un salon vocal et textuel où aucune classe n'est lancée,"
 						+ " et préciser un nom de classe unique.", "Permet aux élèves de rejoindre la classe de leur professeur. Ils doivent se connecter dans le salon vocal où la classe est lancée.",

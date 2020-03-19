@@ -56,6 +56,7 @@ public class Classe {
 	}
 	public void removeQuestion(Question question) {
 		if(this.questions.contains(question)) {
+			question.getMessage().delete().queue();
 			this.questions.remove(question);
 		}
 	}

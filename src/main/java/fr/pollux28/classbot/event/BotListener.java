@@ -68,7 +68,6 @@ public class BotListener implements EventListener {
 								if(event.getMember().equals(cl.getGuild().getMember(cl.getProf()))) {
 									if(q.isAnswering()) {
 										q.getGuild().mute(q.getGuild().getMember(q.getUser()), true).queue();
-										q.getMessage().delete().queue();
 										cl.getQuestions().remove(q);
 										
 									}else {
@@ -76,7 +75,6 @@ public class BotListener implements EventListener {
 									}
 								}else if(event.getMember().equals(q.getGuild().getMember(q.getUser()))) {
 									q.getGuild().mute(q.getGuild().getMember(q.getUser()), true).queue();
-									q.getMessage().delete().queue();
 									cl.getQuestions().remove(q);
 									
 								}else {
@@ -173,19 +171,19 @@ public class BotListener implements EventListener {
 					return;
 				}
 			}else if(guild.getId().equals(cl.getGuild().getId()) && cl.getVoiceChannel().getId().equals(vc.getId()) && cl.getUsers().contains(user)){
-				if(cl.getProf().getId().equals(event.getMember().getUser().getId())) {				
+				if(!cl.getProf().getId().equals(event.getMember().getUser().getId())) {				
 					if(guild.getSelfMember().canInteract(member)) {
 						guild.mute(member, true).queue();
 						String[] fieldTitle = {"/question [sujet]"};
 						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
-						sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" avec la commande"
+						sendPrivateMessage(user, messageBuilder("Vous avez automatiquement été rendu muet", "Pour participer vocalement, demander l'autorisation à "+cl.getProf().getAsMention()+" avec la commande"
 								,1,fieldTitle,fieldContent));
 						return;
 					}else {
 						String[] fieldTitle = {"/question [sujet]"};
 						String[] fieldContent = {"Vous permet de demander à prendre la parole."};
 						sendPrivateMessage(user, messageBuilder("Vous n'avez pas automatiquement été rendu muet", "Merci de vous muter pour ne pas déranger le cours de la classe"
-								+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getName()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
+								+ "\nPour participer vocalement, demander l'autorisation à "+cl.getProf().getAsMention()+" puis démutez vous quand vous recevrez un message après avoir utilisé la commande"
 								,1,fieldTitle,fieldContent));
 						return;
 					}

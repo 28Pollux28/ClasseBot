@@ -242,7 +242,8 @@ public class CommandDefault {
 				}
 			case "mute":
 				Duration duration = Duration.ofSeconds(5); 
-				textChannel.sendTyping().delay(duration).queue();;
+				textChannel.sendTyping().delay(duration).queue();
+				return;
 			
 			
 			default:

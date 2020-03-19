@@ -1,6 +1,7 @@
 package fr.pollux28.classbot.command.defaut;
 
 import java.awt.Color;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,6 +240,11 @@ public class CommandDefault {
 							imgError));
 					return;
 				}
+			case "mute":
+				Duration duration = Duration.ofSeconds(5); 
+				textChannel.sendTyping().delay(duration).queue();;
+			
+			
 			default:
 				fieldTitle = new String[]{"/classe help","/classe start [name]","/classe join @[nom du prof]","/classe stop","/classe quit","/question [question]"};
 				fieldContent = new String[]{"Ouvre cette interface","Permet de créer une classe si vous êtes prof. Vous devez être connecté dans un salon vocal et textuel où aucune classe n'est lancée,"

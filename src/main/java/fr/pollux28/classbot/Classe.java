@@ -17,7 +17,8 @@ public class Classe {
 	protected VoiceChannel voiceChannel;
 	protected TextChannel textChannel;
 	protected Guild guild;
-	protected ArrayList<Question> questions; 
+	protected ArrayList<Question> questions;
+	protected boolean isMuted;
 	
 	public Classe(String name, User prof, Guild guild, VoiceChannel voiceChannel, TextChannel textChannel) {
 		this.name = name;
@@ -60,6 +61,15 @@ public class Classe {
 			this.questions.remove(question);
 		}
 	}
+	
+	public boolean isMuted() {
+		return isMuted;
+	}
+
+	public void setMuted(boolean isMuted) {
+		this.isMuted = isMuted;
+	}
+
 	public Guild getGuild() {
 		return guild;
 	}

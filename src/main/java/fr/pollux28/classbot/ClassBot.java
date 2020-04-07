@@ -21,7 +21,7 @@ public class ClassBot implements Runnable{
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
 	static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();
-	
+	@SuppressWarnings("deprecation")
 	public ClassBot() throws LoginException {
 		jda = new JDABuilder(AccountType.BOT)
 			.setToken(System.getenv("TOKEN"))

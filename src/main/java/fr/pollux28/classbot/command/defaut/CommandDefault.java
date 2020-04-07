@@ -1,7 +1,6 @@
 package fr.pollux28.classbot.command.defaut;
 
 import java.awt.Color;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 

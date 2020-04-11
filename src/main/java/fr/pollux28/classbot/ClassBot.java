@@ -8,12 +8,9 @@ import javax.security.auth.login.LoginException;
 
 import fr.pollux28.classbot.command.CommandMap;
 import fr.pollux28.classbot.event.BotListener;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.Activity.ActivityType;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
@@ -32,7 +29,7 @@ public class ClassBot implements Runnable{
 			.build();*/
 		jda = JDABuilder.create(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
 				.setToken(System.getenv("TOKEN"))
-				.setActivity(Activity.of(ActivityType.CUSTOM_STATUS, "/help pour les commandes"))
+				.setActivity(Activity.watching("/classe help pour les commandes"))
 				.build();
 		jda.addEventListener(new BotListener(commandMap));
 	}

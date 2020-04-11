@@ -10,7 +10,7 @@ public class Question {
 	protected boolean isAnswering;
 	protected Message message;
 	protected Guild guild;
-	
+
 	public Message getMessage() {
 		return message;
 	}
@@ -19,8 +19,8 @@ public class Question {
 		this.message = message;
 	}
 
-	public Question(User user,String subject,Guild guild) {
-		this.user=user;
+	public Question(User user, String subject, Guild guild) {
+		this.user = user;
 		this.subject = subject;
 		this.guild = guild;
 		this.isAnswering = false;
@@ -57,7 +57,5 @@ public class Question {
 	public void setAnswering(boolean isAnswering) {
 		this.isAnswering = isAnswering;
 	}
-
-
 
 }

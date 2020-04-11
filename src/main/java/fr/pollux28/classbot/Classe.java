@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 
 public class Classe {
-	
+
 	protected String name;
 	protected User prof;
 	protected ArrayList<User> users;
@@ -19,7 +19,7 @@ public class Classe {
 	protected Guild guild;
 	protected ArrayList<Question> questions;
 	protected boolean isMuted;
-	
+
 	public Classe(String name, User prof, Guild guild, VoiceChannel voiceChannel, TextChannel textChannel) {
 		this.name = name;
 		this.prof = prof;
@@ -36,32 +36,36 @@ public class Classe {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
+
 	public void addQuestion(Question question) {
-			this.questions.add(question);
+		this.questions.add(question);
 	}
+
 	public Question getQuestionByMember(Member member) {
-		for(Question q : questions) {
+		for (Question q : questions) {
 			if (q.getGuild().getMember(q.getUser()).getId().equals(member.getId())) {
 				return q;
 			}
 		}
-	return null;
+		return null;
 	}
+
 	public Question getQuestionByMessageID(String messageID) {
-		for(Question q : questions) {
+		for (Question q : questions) {
 			if (q.getMessage().getId().equals(messageID)) {
 				return q;
 			}
 		}
-	return null;
+		return null;
 	}
+
 	public void removeQuestion(Question question) {
-		if(this.questions.contains(question)) {
+		if (this.questions.contains(question)) {
 			question.getMessage().delete().queue();
 			this.questions.remove(question);
 		}
 	}
-	
+
 	public boolean isMuted() {
 		return isMuted;
 	}
@@ -101,17 +105,21 @@ public class Classe {
 	public void setUsers(ArrayList<User> users) {
 		this.users = users;
 	}
-	public boolean addUser(User user,Member member) {
-		if(!this.users.contains(user)) {
+
+	public boolean addUser(User user, Member member) {
+		if (!this.users.contains(user)) {
 			this.users.add(user);
-		}else return false;
-		if(!ClassBot.getMemberClasses().containsKey(member)) {
-		ClassBot.getMemberClasses().put(member, this);
-		return true;
-		}else return false;
+		} else
+			return false;
+		if (!ClassBot.getMemberClasses().containsKey(member)) {
+			ClassBot.getMemberClasses().put(member, this);
+			return true;
+		} else
+			return false;
 	}
+
 	public boolean removeUser(User user) {
-		if(this.users.contains(user)) {
+		if (this.users.contains(user)) {
 			this.users.remove(user);
 			return true;
 		}
@@ -136,12 +144,11 @@ public class Classe {
 
 	public User getUsers(User user) {
 		for (User user1 : users) {
-			if(user1.getId().equals(user.getId())){
+			if (user1.getId().equals(user.getId())) {
 				return user1;
 			}
-		} 
+		}
 		return null;
 	}
-	
-	
+
 }

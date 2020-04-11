@@ -10,7 +10,7 @@ public final class SimpleCommand {
 	public final ExecutorType type;
 	private final Object object;
 	private final Method method;
-	
+
 	public SimpleCommand(String name, String description, ExecutorType type, Object object, Method method) {
 		super();
 		this.name = name;
@@ -39,6 +39,5 @@ public final class SimpleCommand {
 	public Method getMethod() {
 		return method;
 	}
-	
-	
+
 }

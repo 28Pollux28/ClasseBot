@@ -29,7 +29,7 @@ public class ClassBot implements Runnable{
 			.build();*/
 		jda = JDABuilder.create(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
 				.setToken(System.getenv("TOKEN"))
-				.setActivity(Activity.watching("/classe help pour les commandes"))
+				.setActivity(Activity.watching("/classe help"))
 				.build();
 		jda.addEventListener(new BotListener(commandMap));
 	}

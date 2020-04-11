@@ -52,7 +52,7 @@ public class BotListener implements EventListener {
 					if(cl.getTextChannel().getId().equals(event.getChannel().getId())) {
 						if(cl.getQuestionByMessageID(event.getMessageId()) != null) {
 							Question q = cl.getQuestionByMessageID(event.getMessageId());
-							if(emoji.equals("✅")) {
+							if(emoji.equals("âœ…")) {
 								if(event.getMember().equals(cl.getGuild().getMember(cl.getProf()))) {
 									if(q.getGuild().getMember(q.getUser()).getVoiceState().inVoiceChannel()&& 
 											q.getGuild().getMember(q.getUser()).getVoiceState().getChannel().getId().equals(cl.getVoiceChannel().getId())){

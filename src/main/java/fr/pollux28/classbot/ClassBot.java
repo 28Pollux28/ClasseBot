@@ -11,22 +11,29 @@ import fr.pollux28.classbot.event.BotListener;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Activity.ActivityType;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class ClassBot implements Runnable{
 	static public ArrayList<Classe> classes = new ArrayList<Classe>();
 	private final JDA jda;
+	//private final JDA jdaB;
 	private final CommandMap commandMap = new CommandMap(this);
 	private boolean running;
 	private final Scanner scanner = new Scanner(System.in);
 	static public HashMap<Member,Classe> memberClasses = new HashMap<Member,Classe>();
-	@SuppressWarnings("deprecation")
 	public ClassBot() throws LoginException {
-		jda = new JDABuilder(AccountType.BOT)
+		/*jda = new JDABuilder(AccountType.BOT)
 			.setToken(System.getenv("TOKEN"))
 			.setActivity(Activity.watching("/classe help"))
-			.build();
+			.build();*/
+		jda = JDABuilder.create(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
+				.setToken(System.getenv("TOKEN"))
+				.setActivity(Activity.of(ActivityType.CUSTOM_STATUS, "/help pour les commandes"))
+				.build();
 		jda.addEventListener(new BotListener(commandMap));
 	}
 	

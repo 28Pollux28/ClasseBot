@@ -71,10 +71,11 @@ public class ClassBot implements Runnable{
 		 
 		try {
 			ClassBot classBot = new ClassBot();
+			System.out.println("Hello World !");
 			new Thread(classBot, "bot").start();
 		} catch (Exception e) {
 		}
 		
-		System.out.println("Hello World !");	
+			
 	}
 }

@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>main.java</groupId>
 	<artifactId>ClassBot</artifactId>
@@ -11,7 +13,7 @@
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
-			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml-->
+			<!--https://devcenter.heroku.com/articles/run-non-web-java-processes-on-heroku#pom-xml -->
 			<plugin>
 				<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/appassembler-maven-plugin -->
 				<groupId>org.codehaus.mojo</groupId>
@@ -21,14 +23,17 @@
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
-							<mainClass>fr.pollux28.classbot.ClassBot</mainClass><!--src/main/java/fr/pollux28/classbot/ClassBot.java-->
+							<mainClass>fr.pollux28.classbot.ClassBot</mainClass><!--src/main/java/fr/pollux28/classbot/ClassBot.java -->
 							<name>worker</name>
 						</program>
 					</programs>
 				</configuration>
-				<executions><!--important-->
+				<executions><!--important -->
 					<execution>
-						<phase>package</phase><goals><goal>assemble</goal></goals>
+						<phase>package</phase>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -54,8 +59,14 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>net.dv8tion</groupId>
-			<artifactId>JDA</artifactId><!--important (API Discord pour Java)-->
+			<artifactId>JDA</artifactId><!--important (API Discord pour Java) -->
 			<version>4.1.1_121</version>
 		</dependency>
 	</dependencies>
